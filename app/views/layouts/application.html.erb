@@ -10,18 +10,25 @@
   </head>
 
   <body>
+    <header>
     <% if user_signed_in? %>
-    <li>
-      <%= link_to "Log out",destroy_user_session_path,method: :delete %>
-    </li>
+    <li><%= link_to "Bookers",root_path %></li>
+    <li><%= link_to "Home",user_path,class:</li>
+    <li><%= link_to "Log out",destroy_user_session_path,method: :delete %></li>
     <% else %>
-    <li>
-      <%= link_to "Sign up",new_user_registration_path %>
-    </li>
-    <li>
-      <%= link_to "Log in",new_user_session_path %>
-    </li>
+    <li><%= link_to "Bookers",root_path %></li>
+    <li><%= link_to "Home",root_path,class:"fas fa-home" %></li>
+    <li><%= link_to "About",home_about_path,class:"fas fa-link" %></li>
+    <li><%= link_to "Sign up",new_user_registration_path,class:"fas fa-user-plus" %></li>
+    <li><%= link_to "Log in",new_user_session_path,class:"fas fa-sign-in-alt" %></li>
     <% end %>
-    <%= yield %>
+    </header>
+    
+    <main><%= yield %></main>
+    
+    <footer>
+     <p>CopyRight Infratop.inc</p>
+    </footer>
+    
   </body>
 </html>
