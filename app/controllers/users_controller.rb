@@ -3,6 +3,9 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+    if @user != current_user
+    redirect_to user_path(current_user)
+    end
   end
 
   def index
@@ -23,9 +26,10 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      redirect_to user_path(@user)
+       flash[:notice] = "You have created book successfully."
+       redirect_to user_path(@user)
     else
-      render :edit
+       render :edit
     end
   end
 

@@ -1,4 +1,4 @@
-
+<%= flash[:notice] %>
         <div class="container px-5 px-sm-0">
           <div class="row">
             <div class="col-md-3">
@@ -20,9 +20,12 @@
   <tbody>
         <% @books.each do |book| %>
         <tr>
-        <td><%= link_to user_path(@user) %>
-         <%= attachment_image_tag @user,:profile_image, :size =>'60x60', format: 'jpeg', fallback: "japan2.jpg" %>
+        <td>
+          <%= link_to user_path(@user) do %>
+          <%= attachment_image_tag @user,:profile_image, :size =>'60x60', format: 'jpeg', fallback: "japan2.jpg" %>
+          <% end %>
         </td>
+
         <td><%= link_to book_path(book.id) do %>
             <%= book.title %>
             <% end %>
