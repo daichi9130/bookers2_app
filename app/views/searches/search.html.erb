@@ -1,0 +1,50 @@
+<% if @range == "User" %>
+  <h2>User search for"<%= @word %>"</h2>
+  <% else %>
+  <h2>Book search for"<%= @word %>"</h2>
+<% end %>
+
+<table class="table table-hover table-inverse">
+  <% if @range == "User" %>
+  <tbody>
+   <tr>
+    <th>image</th>
+    <th>name</th>
+   </tr>
+  </tbody>
+  <% else %>
+   <tbody>
+   <tr>
+    <th></th>
+    <th>Title</th>
+    <th>Opinion</th>
+   </tr>
+   </tbody>
+<% end %>
+
+  <% if @range == "User" %>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= attachment_image_tag user,:profile_image, :size =>'60x60', format: 'jpeg', fallback: "japan2.jpg" %></td>
+          <td><%= user.name %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  <% else %>
+
+    <tbody>
+      <% @books.each do |book| %>
+        <tr>
+          <td>
+            <%= link_to user_path(book.user) do %>
+            <%= attachment_image_tag book.user,:profile_image, :size =>'60x60', format: 'jpeg', fallback: "japan2.jpg" %>
+            <% end %>
+          </td>
+          <td><%= book.title %></td>
+          <td><%= book.body %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  <% end %>
+</table>
