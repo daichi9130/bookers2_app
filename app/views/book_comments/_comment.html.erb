@@ -1,0 +1,10 @@
+<% book.book_comments.each do |book_comment| %>
+            <%= attachment_image_tag book_comment.user,:profile_image, :size =>'60x60', format: 'jpeg', fallback: "japan2.jpg" %>
+            <%= book_comment.user.name %>
+            <%= book_comment.comment %>
+
+            <% if book_comment.user == current_user %>
+            <%= link_to "Destroy", book_book_comment_path(book_comment.book.id, book_comment.id), method: :delete, remote: true %>
+            <% end %>
+
+      <% end %>
